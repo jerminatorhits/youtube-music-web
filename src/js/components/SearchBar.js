@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
 
 class SearchBar extends Component {
-  handleChange(e) {
-    const title = e.target.value;
-    this.props.changeTitle(title);
+  constructor(props) {
+    super(props);
+  }
+
+  handleSearch(e) {
+    const query = e.target.value;
+    this.props.updateQuery(query);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    if (e.keyCode === 13) {
+      this.props.fetchResults();
+    }
+  }
+
+  handleClick() {
+    this.props.fetchResults();
   }
 
   render() {
     return (
-      <form class="searchcss">
-        <input value={this.props.title} onSubmit={this.handleChange.bind(this)} type="text" placeholder="Search.." name="search" />
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
+      <div className="searchcss">
+        <input value={this.props.query} onKeyUp={this.handleSubmit.bind(this)} onChange={this.handleSearch.bind(this)} type="text" placeholder="Search.." name="search" />
+        <button type="submit" onClick={this.handleClick.bind(this)}><i className="fa fa-search"></i></button>
+      </div>
     );
   }
 }

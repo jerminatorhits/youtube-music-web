@@ -1,0 +1,10 @@
+.result-list-style {
+	border: 1px solid black;
+	list-style-type: none;
+}
+
+.result-wrapper {
+	border: 1px dotted blue;
+	max-width: 1480px;
+	height: 800px;
+}

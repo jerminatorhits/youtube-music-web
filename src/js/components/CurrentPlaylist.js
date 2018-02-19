@@ -1,38 +1,32 @@
 import React, { Component } from 'react';
-import Listing from './item';
-import './ResultContainer.css';
+import './CurrentPlaylist.css';
+import PlaylistItem from './PlaylistItem';
 
-class ResultContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isEmpty: true
-    }
-  }
+class CurrentPlaylist extends Component {
 
   renderListings(listings) {
     return listings.map(listing => {
       return (
-        <Listing
+        <PlaylistItem
           key={listing.id.videoId}
           title={listing.snippet.title}
           channelTitle={listing.snippet.channelTitle}
           thumbnail={listing.snippet.thumbnails.default}
-          addVideo={this.props.addVideo}
-          video={listing} />
+          video={listing}
+          playSelected={this.props.playSelected} />
       );
     });
   }
 
   render() {
     return (
-      <div className="result-wrapper">
+      <div className="current-playlist-wrapper">
         <ul className="result-list-style">
-          { this.renderListings(this.props.listings) }
+          { this.renderListings(this.props.playlist) }
         </ul>
       </div>
     );
   }
 }
 
-export default ResultContainer;
+export default CurrentPlaylist;
