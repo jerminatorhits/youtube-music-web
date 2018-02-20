@@ -11,7 +11,7 @@ class VideoBox extends Component {
   if (currentVideo === "") {
     return <h2>Place YouTube Video Here</h2>;
   }
-    return <iframe width="560" height="315" src={"https://www.youtube.com/embed/" + this.props.currentVideo.id.videoId} frameBorder="0" allow="autoplay; encrypted-media"></iframe>;
+    return <iframe width="560" height="315" src={"https://www.youtube.com/embed/" + this.props.currentVideo.id.videoId + "?&autoplay=1"} frameBorder="0" allow="autoplay; encrypted-media"></iframe>;
   }
 
   render() {
