@@ -5,10 +5,10 @@ import PlaylistItem from './PlaylistItem';
 class CurrentPlaylist extends Component {
 
   renderListings(listings) {
-    return listings.map(listing => {
+    return listings.map((listing, i) => {
       return (
         <PlaylistItem
-          key={listing.id.videoId}
+          key={i}
           title={listing.snippet.title}
           channelTitle={listing.snippet.channelTitle}
           thumbnail={listing.snippet.thumbnails.default}

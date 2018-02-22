@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import YouTube from 'react-youtube';
 import './VideoBox.css';
 
 class VideoBox extends Component {
@@ -8,16 +9,38 @@ class VideoBox extends Component {
 
   renderVideo(currentVideo) {
   //const isLoggedIn = props.isLoggedIn;
+  const opts = {
+    width: "560",
+    height: "315",
+    frameBorder: "0",
+    playerVars: {
+      autoplay: 1
+    }
+  };
+
   if (currentVideo === "") {
     return <h2>Place YouTube Video Here</h2>;
   }
-    return <iframe width="560" height="315" src={"https://www.youtube.com/embed/" + this.props.currentVideo.id.videoId + "?&autoplay=1"} frameBorder="0" allow="autoplay; encrypted-media"></iframe>;
+    return <YouTube
+             videoId={currentVideo.id.videoId}
+             opts={opts}
+             onReady={this._onReady}
+             onEnd={this._onEnd}
+           />
+  }
+
+  _onReady(event) {
+    event.target.playVideo();
+  }
+
+  _onEnd = () => {
+    this.props.playNext();
   }
 
   render() {
     return (
       <div className="video-container">
-        { this.renderVideo(this.props.currentVideo) }
+        {this.renderVideo(this.props.currentVideo)}
       </div>
     );
   }

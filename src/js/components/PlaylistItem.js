@@ -6,14 +6,13 @@ class PlaylistItem extends Component {
     super(props);
   }
 
-  onClick() {
+  onDoubleClick() {
     this.props.playSelected(this.props.video);
-    console.log("Playlist Item Clicked");
   }
 
   render() {
     return (
-      <li className="resultItem" onClick={this.onClick.bind(this)}>
+      <li className="resultItem" onDoubleClick={this.onDoubleClick.bind(this)}>
         <div className="itemBox">
           <div className="crop">
             <img className="ytImgThumbImg"
