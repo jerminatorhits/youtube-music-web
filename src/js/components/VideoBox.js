@@ -9,6 +9,7 @@ class VideoBox extends Component {
 
   renderVideo(currentVideo) {
   //const isLoggedIn = props.isLoggedIn;
+
   const opts = {
     width: "560",
     height: "315",

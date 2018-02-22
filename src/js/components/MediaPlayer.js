@@ -8,19 +8,28 @@ class MediaPlayer extends Component {
     super(props);
     this.state = {
       currentVideo: "",
-      currentIndex: 0
+      currentIndex: 0,
+      refresh: false
     }
   }
 
   playSelected(video) {
-    console.log("Video Selected");
-    console.log(video);
     const playlist = this.props.playlist;
     const currentIndex = playlist.indexOf(video);
     this.setState({
-      currentVideo: video,
-      currentIndex: currentIndex
+      currentVideo: "",
+      currentIndex: 0
     });
+    setTimeout(() => {
+      this.setState({
+        currentVideo: video,
+        currentIndex: currentIndex
+      });
+    }, 1)
+  }
+
+  refreshVideo() {
+
   }
 
   playNext() {
