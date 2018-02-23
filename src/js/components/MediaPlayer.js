@@ -6,39 +6,36 @@ import './MediaPlayer.css';
 class MediaPlayer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+
+    this.initialState = {
       currentVideo: "",
-      currentIndex: 0,
-      refresh: false
-    }
+      currentIndex: 0
+    };
+    
+    this.state = this.initialState;
   }
 
   playSelected(video) {
     const playlist = this.props.playlist;
     const currentIndex = playlist.indexOf(video);
-    this.setState({
-      currentVideo: "",
-      currentIndex: 0
-    });
+    this.loadVideo(video, currentIndex);
+  }
+
+  loadVideo(video, index) {
+    this.setState(this.initialState);
     setTimeout(() => {
       this.setState({
         currentVideo: video,
-        currentIndex: currentIndex
+        currentIndex: index
       });
     }, 1)
-  }
-
-  refreshVideo() {
-
   }
 
   playNext() {
     if (this.state.currentIndex < this.props.playlist.length - 1) {
       var nextIndex = this.state.currentIndex + 1;
-      this.setState({
-        currentVideo: this.props.playlist[nextIndex],
-        currentIndex: nextIndex
-      });
+      var nextVideo = this.props.playlist[nextIndex];
+      this.loadVideo(nextVideo, nextIndex);
     }
   }
 
