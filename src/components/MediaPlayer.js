@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CurrentPlaylist from './CurrentPlaylist';
 import VideoBox from './VideoBox';
+import ToolBar from './ToolBar';
 import './MediaPlayer.css';
 
 class MediaPlayer extends Component {
@@ -9,7 +10,8 @@ class MediaPlayer extends Component {
 
     this.initialState = {
       currentVideo: "",
-      currentIndex: 0
+      currentIndex: 0,
+      playing: false
     };
     
     this.state = this.initialState;
@@ -19,6 +21,7 @@ class MediaPlayer extends Component {
     const playlist = this.props.playlist;
     const currentIndex = playlist.indexOf(video);
     this.loadVideo(video, currentIndex);
+
   }
 
   loadVideo(video, index) {
@@ -26,9 +29,23 @@ class MediaPlayer extends Component {
     setTimeout(() => {
       this.setState({
         currentVideo: video,
-        currentIndex: index
+        currentIndex: index,
+        playing: true
       });
     }, 1)
+  }
+
+  togglePlay(event) {
+    if (this.state.playing || this.state.currentVideo === "") {
+      this.setState({
+        playing: false
+      });
+    }
+    else {
+      this.setState({
+        playing: true
+      });
+    }
   }
 
   playNext() {
@@ -45,10 +62,15 @@ class MediaPlayer extends Component {
         <VideoBox
           currentVideo={this.state.currentVideo}
           playNext={this.playNext.bind(this)}
+          togglePlay={this.togglePlay.bind(this)}
         />
         <CurrentPlaylist
           playlist={this.props.playlist}
           playSelected={this.playSelected.bind(this)}
+        />
+        <ToolBar
+          togglePlay={this.togglePlay.bind(this)}
+          playing={this.state.playing}
         />
       </div>
     );

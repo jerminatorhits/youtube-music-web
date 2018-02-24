@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from './js/components/Header';
-import ResultContainer from './js/components/ResultContainer';
-import MediaPlayer from './js/components/MediaPlayer';
-import SideBar from './js/components/SideBar';
+import Header from './components/Header';
+import ResultContainer from './components/ResultContainer';
+import MediaPlayer from './components/MediaPlayer';
+import SideBar from './components/SideBar';
 import { getYoutubeVideos } from './utils/client';
 import './App.css';
 

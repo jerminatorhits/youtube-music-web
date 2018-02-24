@@ -15,7 +15,8 @@ class VideoBox extends Component {
     height: "315",
     frameBorder: "0",
     playerVars: {
-      autoplay: 1
+      autoplay: 1,
+      rel: 0
     }
   };
 
@@ -27,6 +28,8 @@ class VideoBox extends Component {
              opts={opts}
              onReady={this._onReady}
              onEnd={this._onEnd}
+             onPlay={this._onPlay}
+             onPause={this._onPause}
            />
   }
 
@@ -37,6 +40,17 @@ class VideoBox extends Component {
   _onEnd = () => {
     this.props.playNext();
   }
+
+  _onPlay = (event) => {
+    event.target.playVideo();
+    this.props.togglePlay();
+  }
+
+  _onPause = (event) => {
+    event.target.pauseVideo();
+    this.props.togglePlay();
+  }
+
 
   render() {
     return (

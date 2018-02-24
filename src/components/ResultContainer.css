@@ -1,6 +1,15 @@
 .result-list-style {
+	/*
 	border: 1px solid black;
 	list-style-type: none;
+	overflow: hidden;
+	overflow-y: scroll;
+	*/
+	height: 500px;
+	min-width: 400px;
+	width: 100%;
+	overflow:hidden;
+	overflow-y:scroll;
 }
 
 .result-wrapper {
