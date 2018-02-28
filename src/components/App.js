@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Header from './components/Header';
-import ResultContainer from './components/ResultContainer';
-import MediaPlayer from './components/MediaPlayer';
-import SideBar from './components/SideBar';
-import { getYoutubeVideos } from './utils/client';
+import Header from './Header';
+import ResultBox from './ResultBox';
+import MediaPlayer from './MediaPlayer';
+import SideBar from './SideBar';
+import { getYoutubeVideos } from '../utils/client';
 import './App.css';
 
 const dummyData = [
@@ -213,7 +213,7 @@ class App extends Component {
           
         <div className="main-container">
           <h1>{this.state.title}</h1>
-          <ResultContainer listings={this.state.listings} addVideo={this.addVideo.bind(this)} />
+          <ResultBox listings={this.state.listings} addVideo={this.addVideo.bind(this)} />
           <MediaPlayer playlist={this.state.playlist} />
         </div>
       </div>

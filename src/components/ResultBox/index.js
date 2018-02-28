@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Listing from './item';
-import './ResultContainer.css';
+import Listing from './Item';
+import './ResultBox.css';
 
-class ResultContainer extends Component {
+class ResultBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,4 +35,4 @@ class ResultContainer extends Component {
   }
 }
 
-export default ResultContainer;
+export default ResultBox;
