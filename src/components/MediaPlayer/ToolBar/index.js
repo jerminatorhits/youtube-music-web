@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PlayButton from './PlayButton';
 import RangeSlider from './RangeSlider';
 import './ToolBar.css';
@@ -18,4 +19,10 @@ class ToolBar extends Component {
   }
 }
 
-export default ToolBar;
+function mapStateToProps(state) {
+  return { 
+    playing: state.mediaPlayer.playing
+  }
+}
+
+export default connect(mapStateToProps)(ToolBar);

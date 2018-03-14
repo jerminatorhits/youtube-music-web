@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addVideo } from '../../actions/mediaPlayerActions'
 import './Item.css';
 
 class Listing extends Component {
@@ -7,7 +9,7 @@ class Listing extends Component {
   }
 
   onClick() {
-    this.props.addVideo(this.props.video);
+    this.props.dispatch(addVideo(this.props.video));
   }
 
   render() {
@@ -29,4 +31,11 @@ class Listing extends Component {
   }
 }
 
-export default Listing;
+const mapStateToProps = state => {
+  const { mediaPlayerReducer } = state
+  return { 
+    mediaPlayerReducer
+  }
+}
+
+export default connect(mapStateToProps)(Listing);

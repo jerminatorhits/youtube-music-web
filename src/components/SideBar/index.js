@@ -5,7 +5,7 @@ class SideBar extends Component {
   render() {
     return (
       <div className="side-bar-container">
-        I AM NAVBAR
+        <h1>YouTube Music Player</h1>
       </div>
     );
   }

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { playSelected, nullifyVideo, reinstateVideo } from '../../../../actions/mediaPlayerActions';
 import './PlaylistItem.css';
 
 class PlaylistItem extends Component {
@@ -7,7 +9,10 @@ class PlaylistItem extends Component {
   }
 
   onDoubleClick() {
-    this.props.playSelected(this.props.video);
+    this.props.dispatch(playSelected(this.props.itemID));
+    this.props.dispatch(nullifyVideo());
+    setTimeout(() => 
+    this.props.dispatch(reinstateVideo()), 1);
   }
 
   render() {
@@ -29,4 +34,8 @@ class PlaylistItem extends Component {
   }
 }
 
-export default PlaylistItem;
+function mapStateToProps(state) {
+  return {}
+}
+
+export default connect(mapStateToProps)(PlaylistItem);

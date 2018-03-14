@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CurrentPlaylist from './CurrentPlaylist';
 import VideoBox from './VideoBox';
 import ToolBar from './ToolBar';
@@ -8,22 +9,21 @@ class MediaPlayer extends Component {
   constructor(props) {
     super(props);
 
-    this.initialState = {
-      currentVideo: "",
+    this.state = {
+      currentVideo: null,
       currentIndex: 0,
       playing: false
     };
-    
-    this.state = this.initialState;
   }
 
   playSelected(video) {
-    const playlist = this.props.playlist;
-    const currentIndex = playlist.indexOf(video);
+    const videos = this.props.videos;
+    const currentIndex = videos.indexOf(video);
     this.loadVideo(video, currentIndex);
 
   }
 
+  /*
   loadVideo(video, index) {
     this.setState(this.initialState);
     setTimeout(() => {
@@ -34,9 +34,10 @@ class MediaPlayer extends Component {
       });
     }, 1)
   }
+  */
 
   togglePlay(event) {
-    if (this.state.playing || this.state.currentVideo === "") {
+    if (this.props.playing || this.props.currentVideo === "") {
       this.setState({
         playing: false
       });
@@ -48,33 +49,38 @@ class MediaPlayer extends Component {
     }
   }
 
+  /*
   playNext() {
-    if (this.state.currentIndex < this.props.playlist.length - 1) {
+    if (this.props.currentIndex < this.props.videoslength - 1) {
       var nextIndex = this.state.currentIndex + 1;
-      var nextVideo = this.props.playlist[nextIndex];
+      var nextVideo = this.props.videos[nextIndex];
       this.loadVideo(nextVideo, nextIndex);
     }
   }
+  */
 
   render() {
     return (
       <div className="media-player">
         <VideoBox
-          currentVideo={this.state.currentVideo}
-          playNext={this.playNext.bind(this)}
           togglePlay={this.togglePlay.bind(this)}
         />
         <CurrentPlaylist
-          playlist={this.props.playlist}
           playSelected={this.playSelected.bind(this)}
         />
         <ToolBar
           togglePlay={this.togglePlay.bind(this)}
-          playing={this.state.playing}
         />
       </div>
     );
   }
 }
 
-export default MediaPlayer;
+function mapStateToProps(state) {
+  return {
+    currentVideo: state.mediaPlayer.currentVideo,
+    currentIndex: state.mediaPlayer.currentIndex,
+  }
+}
+
+export default connect(mapStateToProps)(MediaPlayer);

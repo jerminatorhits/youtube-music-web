@@ -7,7 +7,7 @@ class Header extends Component {
   render() {
     return (
       <div className="topHeader">
-        <SearchBar fetchResults={this.props.fetchResults} updateQuery={this.props.updateQuery} />
+        <SearchBar />
       </div>
     );
   }

@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { playNext, nullifyVideo, reinstateVideo } from '../../../actions/mediaPlayerActions';
 import YouTube from 'react-youtube';
 import './VideoBox.css';
 
 class VideoBox extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      currentVideo: null
+    }
   }
 
   renderVideo(currentVideo) {
   //const isLoggedIn = props.isLoggedIn;
-
   const opts = {
     width: "560",
     height: "315",
@@ -20,8 +25,8 @@ class VideoBox extends Component {
     }
   };
 
-  if (currentVideo === "") {
-    return <h2>Place YouTube Video Here</h2>;
+  if (currentVideo == null) {
+    return <h2>Watch YouTube Video Here</h2>;
   }
     return <YouTube
              videoId={currentVideo.id.videoId}
@@ -33,12 +38,22 @@ class VideoBox extends Component {
            />
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(JSON.stringify(this.props.currentVideo) !== JSON.stringify(nextProps.currentVideo)) // Check if it's a new user, you can also use some unique, like the ID
+    {
+      console.log("I supposedly updated...");
+      this.forceUpdate();
+    }
+} 
+
   _onReady(event) {
     event.target.playVideo();
   }
 
   _onEnd = () => {
-    this.props.playNext();
+    this.props.dispatch(playNext());
+    this.props.dispatch(nullifyVideo());
+    this.props.dispatch(reinstateVideo());
   }
 
   _onPlay = (event) => {
@@ -51,7 +66,6 @@ class VideoBox extends Component {
     this.props.togglePlay();
   }
 
-
   render() {
     return (
       <div className="video-container">
@@ -61,4 +75,10 @@ class VideoBox extends Component {
   }
 }
 
-export default VideoBox;
+function mapStateToProps(state) {
+  return {
+    currentVideo: state.mediaPlayer.currentVideo
+  }
+}
+
+export default connect(mapStateToProps)(VideoBox);

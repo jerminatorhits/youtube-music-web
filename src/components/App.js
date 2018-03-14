@@ -3,9 +3,9 @@ import Header from './Header';
 import ResultBox from './ResultBox';
 import MediaPlayer from './MediaPlayer';
 import SideBar from './SideBar';
-import { getYoutubeVideos } from '../utils/client';
 import './App.css';
 
+/*
 const dummyData = [
       {
        "kind": "youtube#searchResult",
@@ -173,48 +173,22 @@ const dummyData = [
        }
       }
      ];;;
+*/
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      query: "",
-      listings: dummyData,
-      title: "",
-      playlist: []
-    }
-  }
-
-  addVideo(video) {
-    this.setState({ playlist: this.state.playlist.concat(video)});
-  }
-
-  updateQuery(query) {
-    this.setState({
-      title: query,
-      query: query
-    });
-  }
-
-  fetchResults() {
-    // getYoutubeVideos(this.state.query, (err, res) => {
-    //   console.log(res.body.items);
-    //   this.setState({
-    //     listings: res.body.items
-    //   });
-    // });
   }
 
   render() {
     return (
       <div className="App">
         <SideBar />
-        <Header updateQuery={this.updateQuery.bind(this)} fetchResults={this.fetchResults.bind(this)} />
+        <Header />
           
         <div className="main-container">
-          <h1>{this.state.title}</h1>
-          <ResultBox listings={this.state.listings} addVideo={this.addVideo.bind(this)} />
-          <MediaPlayer playlist={this.state.playlist} />
+          <ResultBox />
+          <MediaPlayer />
         </div>
       </div>
     );

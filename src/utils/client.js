@@ -1,17 +1,15 @@
-const request = require('superagent');
+const axios = require('axios');
 
 const BASE_URL = 'https://www.googleapis.com/youtube/v3';
 
-function getYoutubeVideos(query, callback) {
+function getYoutubeVideos(query) {
 
 	var modQuery = query.replace(" ", "%20");
 	var api_key = "AIzaSyDdy60XJILa67EdMImEplxzhUk0dKh0hwo";
  	var part = "snippet";
-
- 	request.get(`${BASE_URL}/search?q=${modQuery}&part=${part}&key=${api_key}`)
- 	.end(callback);
+ 	return axios.get(`${BASE_URL}/search?q=${modQuery}&part=${part}&key=${api_key}`); 
 }
 
-//getYoutubeVideos("bears");
+//example use: getYoutubeVideos("bears");
 
 export { getYoutubeVideos }
