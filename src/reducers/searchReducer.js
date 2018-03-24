@@ -14,16 +14,16 @@ const searchReducer = (state=initialState, action) => {
 				query: action.query
 			}
 		case 'REQUEST_RESULTS':
-	    return {
-	      ...state,
-	      resultsFetching: true
-	    }
-    case 'RECEIVE_RESULTS':
-      return {
-        ...state,
-        resultsFetching: false,
-        results: action.results
-      }
+		    return {
+		      ...state,
+		      resultsFetching: true
+		    }
+	    case 'RECEIVE_RESULTS':
+	        return {
+	          ...state,
+	          resultsFetching: false,
+	          results: action.results
+	        }
 		case "FETCH_RESULTS_PENDING":
 			return {
 				...state,

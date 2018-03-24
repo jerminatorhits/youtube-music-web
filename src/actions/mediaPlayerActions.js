@@ -16,7 +16,7 @@ export function togglePlay() {
 export function addVideo(video) {
   return {
     type: ADD_VIDEO,
-    payload: video 
+    payload: video
   }
 }
 

@@ -67,6 +67,7 @@ class VideoBox extends Component {
   }
 
   render() {
+    console.dir(this.props.dispatch);
     return (
       <div className="video-container">
         {this.renderVideo(this.props.currentVideo)}
