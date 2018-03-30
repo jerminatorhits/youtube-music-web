@@ -1,15 +1,32 @@
+export const MOUNT_PLAYER = 'MOUNT_PLAYER'
+export const PLAYING = 'PLAYING'
+export const NOT_PLAYING = 'NOT_PLAYING'
 export const TOGGLE_PLAY = 'TOGGLE_PLAY'
 export const ADD_VIDEO = 'ADD_VIDEO'
 export const DELETE_VIDEO = 'DELETE_VIDEO'
 export const PLAY_SELECTED = 'PLAY_SELECTED'
 export const PLAY_NEXT = 'PLAY_NEXT'
 export const REFRESH_VIDEO = 'REFRESH_VIDEO'
+export const INCREMENT_INDEX = 'INCREMENT_INDEX'
 export const NULLIFY_VIDEO = 'NULLIFY_VIDEO'
 export const REINSTATE_VIDEO = 'REINSTATE_VIDEO'
 
-export function togglePlay() {
+export function mountPlayer(event) {
   return {
-    type: TOGGLE_PLAY
+    type: MOUNT_PLAYER,
+    payload: event.target
+  }
+}
+
+export function playing() {
+  return {
+    type: PLAYING
+  }
+}
+
+export function notPlaying() {
+  return {
+    type: NOT_PLAYING
   }
 }
 
@@ -20,15 +37,14 @@ export function addVideo(video) {
   }
 }
 
-export function deleteVideo(video) {
+export function deleteVideo(index) {
   return {
     type: DELETE_VIDEO,
-    payload: video
+    payload: index
   }
 }
 
 export function playSelected(itemID) {
-  //refreshVideo();
   return {
     type: PLAY_SELECTED,
     payload: itemID
@@ -36,12 +52,16 @@ export function playSelected(itemID) {
 }
 
 export function playNext() {
-  //refreshVideo();
   return {
     type: PLAY_NEXT
   }
 }
 
+export function incrementIndex() {
+  return {
+    type: INCREMENT_INDEX
+  }
+}
 export function nullifyVideo() {
   return {
     type: NULLIFY_VIDEO
@@ -53,6 +73,8 @@ export function reinstateVideo() {
     type: REINSTATE_VIDEO
   }
 }
+
+
 /*
 function refreshVideo() {
   nullifyVideo();

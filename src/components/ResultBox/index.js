@@ -10,7 +10,7 @@ class ResultBox extends Component {
 
   renderListings(listings) {
     if (listings === null || listings.length === 0) {
-      return <h1>There's nothing here</h1>
+      return <h1>Search Results Box</h1>
     }
     return listings.map(listing => {
       return (

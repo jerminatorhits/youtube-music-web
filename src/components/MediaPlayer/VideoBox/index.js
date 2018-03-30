@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { playNext, nullifyVideo, reinstateVideo } from '../../../actions/mediaPlayerActions';
+import { notPlaying, playing, togglePlay, mountPlayer, playNext, incrementIndex, nullifyVideo, reinstateVideo } from '../../../actions/mediaPlayerActions';
 import YouTube from 'react-youtube';
 import './VideoBox.css';
 
 class VideoBox extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      currentVideo: null
-    }
   }
 
-  renderVideo(currentVideo) {
+  renderPlayerWindow(currentVideo) {
   //const isLoggedIn = props.isLoggedIn;
   const opts = {
     width: "560",
@@ -29,48 +25,49 @@ class VideoBox extends Component {
     return <h2>Watch YouTube Video Here</h2>;
   }
     return <YouTube
+             id="player"
              videoId={currentVideo.id.videoId}
              opts={opts}
              onReady={this._onReady}
              onEnd={this._onEnd}
              onPlay={this._onPlay}
              onPause={this._onPause}
+             onStateChange={this._onStateChange}
            />
   }
 
-  componentWillReceiveProps(nextProps) {
-    if(JSON.stringify(this.props.currentVideo) !== JSON.stringify(nextProps.currentVideo)) // Check if it's a new user, you can also use some unique, like the ID
-    {
-      console.log("I supposedly updated...");
-      this.forceUpdate();
-    }
-} 
+  componentDidMount() {
+    this.props.dispatch(notPlaying());
+  }
 
-  _onReady(event) {
+  _onReady = (event) => {
+    this.props.dispatch(mountPlayer(event));
     event.target.playVideo();
   }
 
-  _onEnd = () => {
-    this.props.dispatch(playNext());
-    this.props.dispatch(nullifyVideo());
-    this.props.dispatch(reinstateVideo());
+  _onEnd = (event) => {
+    this.props.dispatch(notPlaying());
+    if (this.props.currentVideo === this.props.videos[this.props.currentIndex + 1]) {
+      this.props.dispatch(incrementIndex());
+      event.target.playVideo();
+    }
+    else {
+      this.props.dispatch(playNext());
+    }
   }
 
   _onPlay = (event) => {
-    event.target.playVideo();
-    this.props.togglePlay();
+    this.props.dispatch(playing());
   }
 
   _onPause = (event) => {
-    event.target.pauseVideo();
-    this.props.togglePlay();
+    this.props.dispatch(notPlaying());
   }
 
   render() {
-    console.dir(this.props.dispatch);
     return (
       <div className="video-container">
-        {this.renderVideo(this.props.currentVideo)}
+        {this.renderPlayerWindow(this.props.currentVideo)}
       </div>
     );
   }
@@ -78,7 +75,11 @@ class VideoBox extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentVideo: state.mediaPlayer.currentVideo
+    player: state.mediaPlayer.player,
+    currentVideo: state.mediaPlayer.currentVideo,
+    currentIndex: state.mediaPlayer.currentIndex,
+    videos: state.mediaPlayer.videos,
+    isPlaying: state.mediaPlayer.isPlaying
   }
 }
 

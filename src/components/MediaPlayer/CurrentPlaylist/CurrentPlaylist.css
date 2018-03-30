@@ -1,5 +1,8 @@
-.result-list-style {
+.playlist-list-style {
+	overflow: hidden;
+	overflow-y: scroll;
 	border: 1px solid black;
 	list-style-type: none;
 	max-height: 450px;
 }
+

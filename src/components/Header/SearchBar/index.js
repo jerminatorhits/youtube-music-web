@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchResults } from '../../../actions/searchActions'
+import './SearchBar.css';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -9,11 +10,6 @@ class SearchBar extends Component {
       query: ""
     }
   }
-
-  // handleSearch(e) {
-  //   const query = e.target.value;
-  //   this.setState = ({ query });
-  // }
 
   handleChange = e => {
     this.setState({ query : e.target.value });

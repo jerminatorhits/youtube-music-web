@@ -1,16 +1,29 @@
 const initialState = {
+  player: null,
   currentIndex: null,
   currentVideo: null,
+  nextIndex: null,
+  nextVideo: null,
   isPlaying: false,
   videos: []
 }
 
 const mediaPlayerReducer = (state=initialState, action) => {
   switch (action.type) {
-    case "TOGGLE_PLAY":
+    case "MOUNT_PLAYER":
       return {
         ...state,
-        isPlaying: action.payload
+        player: action.payload
+      }
+    case "PLAYING":
+      return {
+        ...state,
+        isPlaying: true
+      }
+    case "NOT_PLAYING":
+      return {
+        ...state,
+        isPlaying: false
       }
     case "ADD_VIDEO":
       return {
@@ -18,10 +31,11 @@ const mediaPlayerReducer = (state=initialState, action) => {
         videos: [...state.videos, action.payload]
       }
     case "DELETE_VIDEO":
-      const index = state.videos.indexOf(action.payload);
+      const index = action.payload;
       if (index !== -1) {
         return {
-          items: [
+          ...state,
+          videos: [
             ...state.videos.slice(0, index),
             ...state.videos.slice(index + 1)
           ]
@@ -38,16 +52,21 @@ const mediaPlayerReducer = (state=initialState, action) => {
       }
     case "PLAY_NEXT":
       const currentIndex = state.currentIndex;
+      const currentVideo = state.currentVideo;
       const videos = state.videos;
       if (currentIndex === videos.length - 1) {
         return {
           ...state,
-          currentIndex: null
+          currentIndex: null,
+          currentVideo: null
         }
       }
+      const nextIndex = currentIndex + 1;
+      const nextVideo = videos[nextIndex];
       return {
         ...state,
-        currentIndex: state.currentIndex + 1
+        currentIndex: nextIndex,
+        currentVideo: nextVideo
       }
     case "NULLIFY_VIDEO":
       return {
@@ -58,6 +77,12 @@ const mediaPlayerReducer = (state=initialState, action) => {
       return {
         ...state,
         currentVideo: state.videos[state.currentIndex]
+      }
+    case "INCREMENT_INDEX":
+      return {
+        ...state,
+        currentIndex: state.currentIndex + 1,
+        nextIndex: state.currentIndex + 2,
       }
     default:
       return state

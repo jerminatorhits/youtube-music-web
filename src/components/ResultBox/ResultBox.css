@@ -1,19 +1,20 @@
 .result-list-style {
-	/*
-	border: 1px solid black;
-	list-style-type: none;
-	overflow: hidden;
-	overflow-y: scroll;
-	*/
-	height: 500px;
+	height: 100%;
 	min-width: 400px;
 	width: 100%;
-	overflow:hidden;
-	overflow-y:scroll;
+	overflow: hidden;
+	overflow-y: scroll;
+	opacity: 0.7;
+    transition: opacity 1.3s ease 2.3s;
 }
 
 .result-wrapper {
 	border: 1px dotted blue;
 	max-width: 1480px;
 	height: 800px;
+}
+
+.result-list-style:hover {
+	transition: .4s ease-out;
+	opacity: 1;
 }

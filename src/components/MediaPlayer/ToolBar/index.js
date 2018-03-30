@@ -9,10 +9,22 @@ class ToolBar extends Component {
     super(props);
   }
 
+  toggleButton() {
+    if (this.props.player) {
+      const player = this.props.player;
+      if (player.getPlayerState() === 1) {
+        player.pauseVideo();
+      }
+      else if (player.getPlayerState() === 2) {
+        player.playVideo();
+      }
+    }
+  }
+
   render() {
     return (
       <div className="tool-bar-style">
-        <PlayButton togglePlay={this.props.togglePlay} playing={this.props.playing} />
+        <PlayButton toggleButton={this.toggleButton.bind(this)} isPlaying={this.props.isPlaying} />
         <RangeSlider />
       </div>
     );
@@ -21,7 +33,8 @@ class ToolBar extends Component {
 
 function mapStateToProps(state) {
   return { 
-    playing: state.mediaPlayer.playing
+    isPlaying: state.mediaPlayer.isPlaying,
+    player: state.mediaPlayer.player
   }
 }
 

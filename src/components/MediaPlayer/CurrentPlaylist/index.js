@@ -23,7 +23,7 @@ class CurrentPlaylist extends Component {
   render() {
     return (
       <div className="current-playlist-wrapper">
-        <ul className="result-list-style">
+        <ul className="playlist-list-style">
           { this.renderListings(this.props.videos) }
         </ul>
       </div>

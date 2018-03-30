@@ -4,10 +4,13 @@ const BASE_URL = 'https://www.googleapis.com/youtube/v3';
 
 function getYoutubeVideos(query) {
 
-	var modQuery = query.replace(" ", "%20");
-	var api_key = "AIzaSyDdy60XJILa67EdMImEplxzhUk0dKh0hwo";
- 	var part = "snippet";
- 	return axios.get(`${BASE_URL}/search?q=${modQuery}&part=${part}&key=${api_key}`); 
+	const modQuery = query.replace(" ", "%20");
+	const part = "snippet";
+ 	const maxResults = "10";
+ 	const type = "video";
+ 	const api_key = "AIzaSyDdy60XJILa67EdMImEplxzhUk0dKh0hwo";
+ 	
+ 	return axios.get(`${BASE_URL}/search?q=${modQuery}&part=${part}&maxResults=${maxResults}&type=${type}&key=${api_key}`); 
 }
 
 //example use: getYoutubeVideos("bears");
