@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PlayButton from './PlayButton';
 import RangeSlider from './RangeSlider';
+import ShuffleButton from './ShuffleButton';
+import RepeatButton from './RepeatButton';
 import './ToolBar.css';
 
 class ToolBar extends Component {
@@ -26,6 +28,8 @@ class ToolBar extends Component {
       <div className="tool-bar-style">
         <PlayButton toggleButton={this.toggleButton.bind(this)} isPlaying={this.props.isPlaying} />
         <RangeSlider />
+        <ShuffleButton />
+        <RepeatButton />
       </div>
     );
   }

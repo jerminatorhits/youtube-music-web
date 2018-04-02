@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CurrentPlaylist from './CurrentPlaylist';
 import VideoBox from './VideoBox';
-import ToolBar from './ToolBar';
 import './MediaPlayer.css';
 
 class MediaPlayer extends Component {
@@ -14,7 +13,6 @@ class MediaPlayer extends Component {
       <div className="media-player">
         <VideoBox />
         <CurrentPlaylist />
-        <ToolBar />
       </div>
     );
   }

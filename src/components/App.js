@@ -3,6 +3,7 @@ import Header from './Header';
 import ResultBox from './ResultBox';
 import MediaPlayer from './MediaPlayer';
 import SideBar from './SideBar';
+import ToolBar from './ToolBar';
 import './App.css';
 
 /*
@@ -190,6 +191,7 @@ class App extends Component {
           <ResultBox />
           <MediaPlayer />
         </div>
+        <ToolBar />
       </div>
     );
   }

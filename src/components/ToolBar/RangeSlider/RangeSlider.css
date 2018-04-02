@@ -1,0 +1,16 @@
+.rangeSlider {
+	margin: 10px;
+	width: 50%;
+	background-color: gray;
+	display: inline-block;
+}
+
+.rangeSlider h6 {
+	display: inline-block;
+	margin: 5px 10px;
+}
+
+.rangeSlider input{
+	margin: 10px 5px;
+	width: 80%;
+}

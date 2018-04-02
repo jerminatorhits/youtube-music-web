@@ -1,6 +1,7 @@
-.playButton {
+.shuffleButton {
 	height: 45px;
 	width: 45px;
-	background-color: blue;
+	margin: 10px;
+	background-color: white;
 	font: bold 18px arial, sans-serif;
 }

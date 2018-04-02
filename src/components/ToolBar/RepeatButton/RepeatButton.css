@@ -1,0 +1,7 @@
+.repeatButton {
+	height: 45px;
+	width: 45px;
+	margin: 10px;
+	background-color: gray;
+	font: bold 18px arial, sans-serif;
+}

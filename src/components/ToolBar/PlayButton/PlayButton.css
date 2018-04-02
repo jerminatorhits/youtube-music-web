@@ -1,0 +1,7 @@
+.playButton {
+	height: 45px;
+	width: 45px;
+	margin: 10px;
+	background-color: blue;
+	font: bold 18px arial, sans-serif;
+}
