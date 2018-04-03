@@ -18,7 +18,7 @@ class VideoBox extends Component {
     playerVars: {
       autoplay: 1,
       rel: 0,
-      origin: "https://rocky-lake-35234.herokuapp.com/"
+      origin: "http://www.youtube.com"
     }
   };
 
