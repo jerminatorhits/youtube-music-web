@@ -18,7 +18,7 @@ class VideoBox extends Component {
     playerVars: {
       autoplay: 1,
       rel: 0,
-      origin: "http://www.youtoube.com"
+      origin: "https://www.youtube.com"
     }
   };
 
