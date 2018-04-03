@@ -17,7 +17,8 @@ class VideoBox extends Component {
     frameBorder: "0",
     playerVars: {
       autoplay: 1,
-      rel: 0
+      rel: 0,
+      origin: "http://www.youtoube.com"
     }
   };
 
