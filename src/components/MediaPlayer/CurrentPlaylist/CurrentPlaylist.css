@@ -4,5 +4,7 @@
 	border: 1px solid black;
 	list-style-type: none;
 	max-height: 450px;
+    -o-text-overflow: ellipsis;    /* Opera < 11*/
+    text-overflow:    ellipsis;
 }
 

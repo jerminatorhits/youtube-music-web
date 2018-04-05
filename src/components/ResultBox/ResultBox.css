@@ -6,6 +6,8 @@
 	overflow-y: scroll;
 	opacity: 0.55;
     transition: opacity 1.3s ease 2.3s;
+    -o-text-overflow: ellipsis;    /* Opera < 11*/
+    text-overflow:    ellipsis;
 }
 
 .result-wrapper {

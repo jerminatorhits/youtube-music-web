@@ -11,6 +11,5 @@
 }
 
 .selected {
-	border: 5px black solid;
-	background-color:;
+	background-color: #666666;
 }
