@@ -15,7 +15,7 @@ class DeleteBox extends Component {
 
   render() {
     return (
-        <div onClick={this.handleClick.bind(this)} className="deleteBox">x</div>
+        <span onClick={this.handleClick.bind(this)} className="deleteBox">x</span>
     );
   }
 }
