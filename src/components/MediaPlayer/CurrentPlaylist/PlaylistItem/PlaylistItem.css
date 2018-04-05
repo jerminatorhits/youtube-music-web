@@ -2,6 +2,15 @@
   position: relative;
 }
 
+.relative div:hover {
+	background-color: #666666;
+}
+
 .resultItem {
   overflow: auto;
+}
+
+.selected {
+	border: 5px black solid;
+	background-color:;
 }

@@ -18,7 +18,7 @@ class PlaylistItem extends Component {
   render() {
     return (
       <div className="relative">
-        <li className="resultItem" onDoubleClick={this.onDoubleClick.bind(this)}>
+        <li className="resultItem selected" onDoubleClick={this.onDoubleClick.bind(this)}>
           <div className="itemBox">
             <div className="crop">
               <img className="ytImgThumbImg"
@@ -38,7 +38,9 @@ class PlaylistItem extends Component {
 }
 
 function mapStateToProps(state) {
-  return {}
+  return {
+    // currentVideo: state.mediaPlayer.currentVideo
+  }
 }
 
 export default connect(mapStateToProps)(PlaylistItem);
