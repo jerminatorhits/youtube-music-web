@@ -4,10 +4,32 @@
 	width: 100%;
 	overflow: hidden;
 	overflow-y: scroll;
-	opacity: 0.55;
-    transition: opacity 1.3s ease 2.3s;
+	opacity: 1;
+		transition: opacity 1.3s ease 2.3s;
     -o-text-overflow: ellipsis;    /* Opera < 11*/
-    text-overflow:    ellipsis;
+		text-overflow:    ellipsis;
+}
+
+.blurify {
+	transition: .4s ease-out;
+	transition-delay: 3s;
+	opacity: 0.55;
+}
+
+.result-empty-container {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	padding: 20px;
+	width: 100%;
+}
+
+.result-empty-text {
+	color: #0d0d0d;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 22px;
 }
 
 .result-wrapper {
@@ -17,6 +39,6 @@
 }
 
 .result-list-style:hover {
-	transition: .4s ease-out;
+	transition: .4s ease-in-out;
 	opacity: 1;
 }

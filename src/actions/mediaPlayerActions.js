@@ -10,6 +10,8 @@ export const REFRESH_VIDEO = 'REFRESH_VIDEO'
 export const INCREMENT_INDEX = 'INCREMENT_INDEX'
 export const NULLIFY_VIDEO = 'NULLIFY_VIDEO'
 export const REINSTATE_VIDEO = 'REINSTATE_VIDEO'
+export const SHUFFLE_ON = 'SHUFFLE_ON'
+export const SHUFFLE_OFF = 'SHUFFLE_OFF'
 
 export function mountPlayer(event) {
   return {
@@ -74,6 +76,17 @@ export function reinstateVideo() {
   }
 }
 
+export function shuffleOn() {
+  return {
+    type: SHUFFLE_ON
+  }
+}
+
+export function shuffleOff() {
+  return {
+    type: SHUFFLE_OFF
+  }
+}
 
 /*
 function refreshVideo() {
