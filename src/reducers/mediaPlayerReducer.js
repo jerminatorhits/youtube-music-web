@@ -1,15 +1,14 @@
 import { shuffle } from '../utils/playlistFunctions'
 
 const initialState = {
-  player: null,
   currentIndex: null,
-  currentVideo: null,
-  nextIndex: null,
-  nextVideo: null,
   isPlaying: false,
   isShuffled: false,
+  nextVideo: null,
+  currentVideo: null,
+  nextIndex: null,
+  player: null,
   videos: [],
-  
 }
 
 const mediaPlayerReducer = (state=initialState, action) => {

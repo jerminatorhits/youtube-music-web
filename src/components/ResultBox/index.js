@@ -14,7 +14,6 @@ class ResultBox extends Component {
   }
 
   handleClick = () => {
-    console.log('clicked!');
     this.setState({isPristine: false});
   }
 
