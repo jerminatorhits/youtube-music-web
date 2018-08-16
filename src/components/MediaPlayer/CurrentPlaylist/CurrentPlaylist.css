@@ -1,9 +1,12 @@
 .playlist-list-style {
+	display: flex;
+	flex-direction: column;
 	overflow: hidden;
 	overflow-y: scroll;
 	border: 1px solid black;
 	list-style-type: none;
 	max-height: 450px;
+	width: 560px;
     -o-text-overflow: ellipsis;    /* Opera < 11*/
     text-overflow:    ellipsis;
 }
