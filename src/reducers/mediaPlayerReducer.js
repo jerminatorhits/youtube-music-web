@@ -1,4 +1,7 @@
-import { shuffle } from '../utils/playlistFunctions'
+import storage from 'redux-persist/lib/storage';
+import { persistReducer } from 'redux-persist';
+
+import { shuffle } from '../utils/playlistFunctions';
 
 const initialState = {
   currentIndex: null,
@@ -104,4 +107,10 @@ const mediaPlayerReducer = (state=initialState, action) => {
   }
 }
 
-export default mediaPlayerReducer
+const persistConfig = {
+  key: 'mediaPlayerReducer',
+  storage: storage,
+  whitelist: ['videos']
+};
+
+export default persistReducer(persistConfig, mediaPlayerReducer);
