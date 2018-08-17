@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Listing from './item';
+import Track from '../Track';
 import magnifier from '../../utils/icons/magnifier.svg';
 import './ResultBox.css';
 
@@ -17,8 +17,8 @@ class ResultBox extends Component {
     this.setState({isPristine: false});
   }
 
-  renderListings(listings) {
-    if (listings === null || listings.length === 0) {
+  renderTracks = (tracks) => {
+    if (tracks === null || tracks.length === 0) {
       return (
         <div className="result-empty-container">
           <img className="magnifier-style" src={magnifier} />
@@ -27,17 +27,17 @@ class ResultBox extends Component {
       );
     }
     return (
-      <ul className={`result-list-style ${!this.state.isPristine ? 'blurify' : ''}`}>
+      <ul className={`result-list-style ${!this.state.isPristine ? 'blurify' : ''}`} onClick={this.handleClick}>
         {
-          listings.map(listing => {
+          tracks.map(track => {
             return (
-              <Listing
-                key={listing.id.videoId}
-                title={listing.snippet.title}
-                channelTitle={listing.snippet.channelTitle}
-                thumbnail={listing.snippet.thumbnails.default}
+              <Track
+                key={track.id.videoId}
+                title={track.snippet.title}
+                channelTitle={track.snippet.channelTitle}
+                thumbnail={track.snippet.thumbnails.default}
                 addVideo={this.props.addVideo}
-                video={listing} />
+                video={track} />
             );
           })
         }
@@ -48,9 +48,7 @@ class ResultBox extends Component {
   render() {
     return (
       <div className="result-wrapper">
-        <ul className="result-list-style" onClick={this.handleClick}>
-          { this.renderListings(this.props.listings) }
-        </ul>
+        { this.renderTracks(this.props.tracks) }
       </div>
     );
   }
@@ -58,7 +56,7 @@ class ResultBox extends Component {
 
 function mapStateToProps(state) {
   return { 
-    listings: state.search.results
+    tracks: state.search.results
   }
 }
 

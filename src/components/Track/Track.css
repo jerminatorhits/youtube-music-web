@@ -1,9 +1,19 @@
 .itemBox {
+  display: flex;
+  flex-direction: row;
 	height: 5.62em;
 	border: 1px solid blue;
 	background-color: gray;
 	width: 100%;
 	padding: 10px 15px;
+}
+
+.text-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 310px;
+  width: 310px;
 }
 
 .itemBox h3 {
@@ -19,6 +29,32 @@
 	font: .8em sans-serif;
 	text-align: left;
 	-webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */   
+}
+
+.track-options-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 40px;
+}
+
+.track-options-container div {
+  width: 40px;
+  height: 40px;
+}
+
+.track-options-container div:hover {
+  background-color: #808080;
+}
+
+.track-options-container p {
+  margin: auto;
+  font-size: 28px;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;          /* Likely future */   
