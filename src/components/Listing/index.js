@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addVideo } from '../../actions/mediaPlayerActions'
-import './Track.css';
+import plus from '../../utils/icons/plus.svg';
+import './Listing.css';
 
-class Track extends Component {
+class Listing extends Component {
   constructor(props) {
     super(props);
   }
@@ -27,9 +28,9 @@ class Track extends Component {
             <h3>{this.props.title}</h3>
             <h4>{this.props.channelTitle}</h4>
           </div>
-          <div className="track-options-container">
-            <div>
-              <p onClick={this.onClick.bind(this)}>+</p>
+          <div className="listing-options-container">
+            <div className="plus-container" onClick={this.onClick.bind(this)}>
+              <img className="plus-style" src={plus} />
             </div>
           </div>
         </div>
@@ -45,4 +46,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Track);
+export default connect(mapStateToProps)(Listing);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Track from '../Track';
+import Listing from '../Listing';
 import magnifier from '../../utils/icons/magnifier.svg';
 import './ResultBox.css';
 
@@ -17,8 +17,8 @@ class ResultBox extends Component {
     this.setState({isPristine: false});
   }
 
-  renderTracks = (tracks) => {
-    if (tracks === null || tracks.length === 0) {
+  renderListings = (listings) => {
+    if (listings === null || listings.length === 0) {
       return (
         <div className="result-empty-container">
           <img className="magnifier-style" src={magnifier} />
@@ -29,15 +29,15 @@ class ResultBox extends Component {
     return (
       <ul className={`result-list-style ${!this.state.isPristine ? 'blurify' : ''}`} onClick={this.handleClick}>
         {
-          tracks.map(track => {
+          listings.map(listing => {
             return (
-              <Track
-                key={track.id.videoId}
-                title={track.snippet.title}
-                channelTitle={track.snippet.channelTitle}
-                thumbnail={track.snippet.thumbnails.default}
+              <Listing
+                key={listing.id.videoId}
+                title={listing.snippet.title}
+                channelTitle={listing.snippet.channelTitle}
+                thumbnail={listing.snippet.thumbnails.default}
                 addVideo={this.props.addVideo}
-                video={track} />
+                video={listing} />
             );
           })
         }
@@ -48,7 +48,7 @@ class ResultBox extends Component {
   render() {
     return (
       <div className="result-wrapper">
-        { this.renderTracks(this.props.tracks) }
+        { this.renderListings(this.props.listings) }
       </div>
     );
   }
@@ -56,7 +56,7 @@ class ResultBox extends Component {
 
 function mapStateToProps(state) {
   return { 
-    tracks: state.search.results
+    listings: state.search.results
   }
 }
 
