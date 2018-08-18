@@ -9,7 +9,7 @@ class PlaylistItem extends Component {
     super(props);
   }
 
-  onClick() {
+  handleDoubleClick() {
     this.props.dispatch(playSelected(this.props.itemID));
     this.props.dispatch(nullifyVideo());
     setTimeout(() => this.props.dispatch(reinstateVideo()), 1);
@@ -18,7 +18,7 @@ class PlaylistItem extends Component {
   render() {
     return (
       <div className="relative">
-        <li className="resultItem" onClick={this.onClick.bind(this)}>
+        <li className="resultItem" onDoubleClick={this.handleDoubleClick.bind(this)}>
           <div className={`itemBox${this.props.currentVideo === this.props.video ? ' selected' : ''}`}>
             <div className="crop">
               <img className="ytImgThumbImg"
@@ -27,8 +27,10 @@ class PlaylistItem extends Component {
                 width={this.props.thumbnail.width}
                 height={this.props.thumbnail.height} />
             </div>
-            <h3>{this.props.title}</h3>
-            <h4>{this.props.channelTitle}</h4>
+            <div className="playlist-item-info">
+              <h3>{this.props.title}</h3>
+              <h4>{this.props.channelTitle}</h4>
+            </div>
           </div>
         </li>
         <DeleteBox itemID={this.props.itemID} />

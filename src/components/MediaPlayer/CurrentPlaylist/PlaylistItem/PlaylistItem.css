@@ -13,3 +13,11 @@
 .selected {
 	background-color: #666666;
 }
+
+.playlist-item-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 310px;
+  width: 310px;
+}

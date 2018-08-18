@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Listing from './item';
+import Listing from '../Listing';
 import magnifier from '../../utils/icons/magnifier.svg';
 import './ResultBox.css';
 
@@ -17,7 +17,7 @@ class ResultBox extends Component {
     this.setState({isPristine: false});
   }
 
-  renderListings(listings) {
+  renderListings = (listings) => {
     if (listings === null || listings.length === 0) {
       return (
         <div className="result-empty-container">
@@ -27,7 +27,7 @@ class ResultBox extends Component {
       );
     }
     return (
-      <ul className={`result-list-style ${!this.state.isPristine ? 'blurify' : ''}`}>
+      <ul className={`result-list-style ${!this.state.isPristine ? 'blurify' : ''}`} onClick={this.handleClick}>
         {
           listings.map(listing => {
             return (
@@ -48,9 +48,7 @@ class ResultBox extends Component {
   render() {
     return (
       <div className="result-wrapper">
-        <ul className="result-list-style" onClick={this.handleClick}>
-          { this.renderListings(this.props.listings) }
-        </ul>
+        { this.renderListings(this.props.listings) }
       </div>
     );
   }

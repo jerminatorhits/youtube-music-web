@@ -1,9 +1,19 @@
 .itemBox {
+  display: flex;
+  flex-direction: row;
 	height: 5.62em;
 	border: 1px solid blue;
 	background-color: gray;
 	width: 100%;
 	padding: 10px 15px;
+}
+
+.text-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 310px;
+  width: 310px;
 }
 
 .itemBox h3 {
@@ -24,6 +34,34 @@
   user-select: none;          /* Likely future */   
 }
 
+.listing-options-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 40px;
+}
+
+.listing-options-container div {
+  width: 40px;
+  height: 40px;
+}
+
+.listing-options-container div:hover {
+  background-color: #999999;
+}
+
+.listing-options-container p {
+  margin: auto;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 28px;
+  line-height: 36px;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */   
+}
+
 .magnifier-style {
 	color: black;
 	height: 100px;
@@ -38,6 +76,16 @@
 	user-select: none;     
 }
 
+.plus-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plus-style {
+  height: 16px;
+  width: 16px;
+}
 /*.resultItem img {
 }
 div.ytImgThumbBox{
