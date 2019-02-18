@@ -3,7 +3,7 @@ import { applyMiddleware, createStore } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web and AsyncStorage for react-native
 
-// import { createLogger } from "redux-logger"
+import { createLogger } from "redux-logger"
 import thunk from "redux-thunk"
 import promise from "redux-promise-middleware"
 
@@ -18,7 +18,7 @@ const persistConfig = {
 
 let middleware = [ promise(), thunk ]
 if (process.env.NODE_ENV !== 'production') {
-  middleware = [ ...middleware ]
+  middleware = [ ...middleware, createLogger() ]
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
