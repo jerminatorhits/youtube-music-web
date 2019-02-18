@@ -38,7 +38,7 @@ class ToolBar extends Component {
 function mapStateToProps(state) {
   return { 
     isPlaying: state.mediaPlayer.isPlaying,
-    player: state.mediaPlayer.player
+    player: state.mediaPlayer.player,
   }
 }
 

@@ -8,10 +8,12 @@ import thunk from "redux-thunk"
 import promise from "redux-promise-middleware"
 
 import rootReducer from '../reducers';
+import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
 const persistConfig = {
   key: 'root',
   storage,
+  stateReconciler: autoMergeLevel2,
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 const middleware = applyMiddleware(promise(), thunk, createLogger())
