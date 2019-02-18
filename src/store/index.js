@@ -19,7 +19,7 @@ let middleware = [ promise(), thunk ]
 
 if (process.env.NODE_ENV === `development`) {
   const { logger } = require(`redux-logger`);
-  middlewares = [ ...middleware, logger ]
+  middleware = [ ...middleware, logger ]
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
