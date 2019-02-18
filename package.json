@@ -27,7 +27,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "jest-cli": "^22.4.2",
+    "jest-cli": "^22.4.4",
     "redux-logger": "^3.0.6"
   }
 }
