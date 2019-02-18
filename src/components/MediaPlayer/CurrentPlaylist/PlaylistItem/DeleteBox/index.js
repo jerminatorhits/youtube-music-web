@@ -10,7 +10,6 @@ class DeleteBox extends Component {
 
   handleClick() {
     this.props.dispatch(deleteVideo(this.props.itemID));
-    console.log(this.props.itemID);
   }
 
   render() {

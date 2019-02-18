@@ -13,7 +13,6 @@ class RepeatButton extends Component {
   }
 
   render() {
-    console.log('this.props:', this.props);
     return (
       <button className="repeatButton" onClick={this.handleClick.bind(this)}>
         {this.props.repeat}
@@ -23,7 +22,6 @@ class RepeatButton extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state:', state);
   return { 
     repeat: state.mediaPlayer.repeat
   }
