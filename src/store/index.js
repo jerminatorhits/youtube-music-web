@@ -15,10 +15,15 @@ const persistConfig = {
   storage,
   stateReconciler: autoMergeLevel2,
 }
-const persistedReducer = persistReducer(persistConfig, rootReducer)
-const middleware = applyMiddleware(promise(), thunk, createLogger())
 
-const store = createStore(persistedReducer, middleware);
+let middleware = [ promise(), thunk ]
+if (process.env.NODE_ENV !== 'production') {
+  middleware = [ ...middleware, createLogger() ]
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+const store = createStore(persistedReducer, applyMiddleware(...middleware));
 const persistor = persistStore(store);
 
 export {
