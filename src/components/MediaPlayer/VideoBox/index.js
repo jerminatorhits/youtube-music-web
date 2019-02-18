@@ -48,6 +48,10 @@ class VideoBox extends Component {
 
   _onEnd = (event) => {
     this.props.dispatch(notPlaying());
+    if (this.props.repeat === 'SONG') {
+      return event.target.seekTo(0);
+    }
+
     if (this.props.currentVideo === this.props.videos[this.props.currentIndex + 1]) {
       this.props.dispatch(incrementIndex());
       event.target.playVideo();
@@ -80,7 +84,8 @@ function mapStateToProps(state) {
     currentVideo: state.mediaPlayer.currentVideo,
     currentIndex: state.mediaPlayer.currentIndex,
     videos: state.mediaPlayer.videos,
-    isPlaying: state.mediaPlayer.isPlaying
+    isPlaying: state.mediaPlayer.isPlaying,
+    repeat: state.mediaPlayer.repeat,
   }
 }
 

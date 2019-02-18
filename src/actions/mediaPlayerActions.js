@@ -1,17 +1,18 @@
-export const MOUNT_PLAYER = 'MOUNT_PLAYER'
-export const PLAYING = 'PLAYING'
-export const NOT_PLAYING = 'NOT_PLAYING'
-export const TOGGLE_PLAY = 'TOGGLE_PLAY'
-export const ADD_VIDEO = 'ADD_VIDEO'
-export const DELETE_VIDEO = 'DELETE_VIDEO'
-export const PLAY_SELECTED = 'PLAY_SELECTED'
-export const PLAY_NEXT = 'PLAY_NEXT'
-export const REFRESH_VIDEO = 'REFRESH_VIDEO'
-export const INCREMENT_INDEX = 'INCREMENT_INDEX'
-export const NULLIFY_VIDEO = 'NULLIFY_VIDEO'
-export const REINSTATE_VIDEO = 'REINSTATE_VIDEO'
-export const SHUFFLE_ON = 'SHUFFLE_ON'
-export const SHUFFLE_OFF = 'SHUFFLE_OFF'
+export const MOUNT_PLAYER = 'MOUNT_PLAYER';
+export const PLAYING = 'PLAYING';
+export const NOT_PLAYING = 'NOT_PLAYING';
+export const TOGGLE_PLAY = 'TOGGLE_PLAY';
+export const ADD_VIDEO = 'ADD_VIDEO';
+export const DELETE_VIDEO = 'DELETE_VIDEO';
+export const PLAY_SELECTED = 'PLAY_SELECTED';
+export const PLAY_NEXT = 'PLAY_NEXT';
+export const REFRESH_VIDEO = 'REFRESH_VIDEO';
+export const INCREMENT_INDEX = 'INCREMENT_INDEX';
+export const NULLIFY_VIDEO = 'NULLIFY_VIDEO';
+export const REINSTATE_VIDEO = 'REINSTATE_VIDEO';
+export const SHUFFLE_ON = 'SHUFFLE_ON';
+export const SHUFFLE_OFF = 'SHUFFLE_OFF';
+export const TOGGLE_REPEAT = 'TOGGLE_REPEAT';
 
 export function mountPlayer(event) {
   return {
@@ -53,9 +54,13 @@ export function playSelected(itemID) {
   }
 }
 
-export function playNext() {
+export function playNext(repeat, shuffle) {
   return {
-    type: PLAY_NEXT
+    type: PLAY_NEXT,
+    payload: {
+      repeat,
+      shuffle,
+    }
   }
 }
 
@@ -85,6 +90,12 @@ export function shuffleOn() {
 export function shuffleOff() {
   return {
     type: SHUFFLE_OFF
+  }
+}
+
+export function toggleRepeat() {
+  return {
+    type: TOGGLE_REPEAT
   }
 }
 

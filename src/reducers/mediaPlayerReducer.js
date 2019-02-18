@@ -2,17 +2,25 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
 import { shuffle } from '../utils/playlistFunctions';
+import { reinstateVideo } from '../actions/mediaPlayerActions';
 
 const initialState = {
   currentIndex: null,
+  currentVideo: null,
   isPlaying: false,
   isShuffled: false,
-  nextVideo: null,
-  currentVideo: null,
   nextIndex: null,
+  nextVideo: null,
   player: null,
+  repeat: 'OFF',
   videos: [],
 }
+
+const REPEAT_SEQUENCE = [
+  'OFF',
+  'PLAYLIST',
+  'SONG',
+]
 
 const mediaPlayerReducer = (state=initialState, action) => {
   switch (action.type) {
@@ -57,10 +65,17 @@ const mediaPlayerReducer = (state=initialState, action) => {
         currentVideo: state.videos[action.payload]
       }
     case "PLAY_NEXT":
-      const currentIndex = state.currentIndex;
-      const currentVideo = state.currentVideo;
+      const { currentIndex, currentVideo, repeat } = state;
       const videos = state.videos;
       if (currentIndex === videos.length - 1) {
+        if (repeat === 'PLAYLIST') {
+          return {
+            ...state,
+            currentIndex: videos[0] ? 0 : null,
+            currentVideo: videos[0] ? videos[0] : null,
+          }
+        }
+
         return {
           ...state,
           currentIndex: null,
@@ -102,6 +117,13 @@ const mediaPlayerReducer = (state=initialState, action) => {
         isShuffled: false,
         shuffledVideos: state.videos
       }
+    case "TOGGLE_REPEAT":
+      return {
+        ...state,
+        repeat: REPEAT_SEQUENCE[REPEAT_SEQUENCE.indexOf(state.repeat) + 1]
+          ? REPEAT_SEQUENCE[REPEAT_SEQUENCE.indexOf(state.repeat) + 1]
+          : REPEAT_SEQUENCE[0]
+      }
     default:
       return state
   }
@@ -110,7 +132,7 @@ const mediaPlayerReducer = (state=initialState, action) => {
 const persistConfig = {
   key: 'mediaPlayerReducer',
   storage: storage,
-  whitelist: ['videos']
+  whitelist: ['videos'],
 };
 
 export default persistReducer(persistConfig, mediaPlayerReducer);
