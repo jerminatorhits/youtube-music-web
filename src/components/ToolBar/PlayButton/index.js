@@ -12,7 +12,12 @@ class PlayButton extends Component {
 
   render() {
     return (
-      <button className="playButton" onClick={this.handleClick.bind(this)}>{this.props.isPlaying ? "Pause" : "Play"}</button>
+      <button className="playButton" onClick={this.handleClick.bind(this)}>
+        {this.props.isPlaying
+          ? <i class="fas fa-pause"></i>
+          : <i class="fas fa-play"></i>
+        }
+      </button>
     );
   }
 }

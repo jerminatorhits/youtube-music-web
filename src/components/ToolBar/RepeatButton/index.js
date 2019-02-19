@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import { toggleRepeat } from '../../../actions/mediaPlayerActions'
 import './RepeatButton.css';
 
+const statusToIcon = {
+  OFF: 'OFF',
+  SONG: <i className="fab fa-itunes-note"></i>,
+  PLAYLIST: <i className="fas fa-redo-alt"></i>,
+};
+
 class RepeatButton extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +21,7 @@ class RepeatButton extends Component {
   render() {
     return (
       <button className="repeatButton" onClick={this.handleClick.bind(this)}>
-        {this.props.repeat}
+        {statusToIcon[this.props.repeat]}
       </button>
     );
   }

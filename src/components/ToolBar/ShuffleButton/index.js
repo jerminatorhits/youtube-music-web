@@ -14,7 +14,11 @@ class ShuffleButton extends Component {
 
   render() {
     return (
-      <button className="shuffleButton" onClick={this.handleClick.bind(this)}>{this.props.isShuffled ? "ON" : "OFF"}</button>
+      <button className="shuffleButton" onClick={this.handleClick.bind(this)}>
+        {this.props.isShuffled
+          ? <i class="fas fa-random"></i>
+          : "OFF"}
+      </button>
     );
   }
 }
